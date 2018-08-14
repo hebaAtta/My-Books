@@ -5,6 +5,7 @@ import sortBy from 'sort-by';
 import PropTypes from "prop-types";
 import * as BooksAPI from './BooksAPI';
 import Books from './Books';
+
 import Res from './Res'
 import BooksApp from './App'
   class Search extends Component {
@@ -27,10 +28,8 @@ import BooksApp from './App'
  }*/
 
  /*updatQuery =(query) =>{
-
    const { books } = this.props
    this.setState({query :query.target.value.trim()})
-
   if (query){
    BooksAPI.search(query, 20).then((results) => {
      if (results.length > 0) {
@@ -40,7 +39,6 @@ import BooksApp from './App'
       return res;
       });
       this.setState({ results });
-
     }
        });
      }
@@ -86,10 +84,12 @@ import BooksApp from './App'
             height: 193,
             backgroundImage: `url(${book.imageLinks.thumbnail})`
           }}></p>
-          
-
-
-       </div>
+    </div>
+    {results.length > 0 &&
+            <Books
+              books={results}
+               update={this.updateBooks}
+            />}
        </li>
        )}
     </ol>
