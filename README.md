@@ -7,6 +7,10 @@ Of course, you are free to start this project from scratch if you wish! Just be 
 ## TL;DR
 
 To get started developing right away:
+1-render books from books API
+2-update function to shelf books
+3-search on books and shelf it 
+
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
