@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 
 
@@ -7,7 +6,7 @@ import PropTypes from "prop-types";
 class Books extends Component {
 
   render(){
-    const { books ,update,moveTo,search }=this.props;
+    const { books ,update }=this.props;
     return(
         <ol className="books-grid">
          {books.map(book => (

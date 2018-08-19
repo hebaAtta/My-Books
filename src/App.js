@@ -1,12 +1,9 @@
 import React from 'react'
  import * as BooksAPI from './BooksAPI'
 import './App.css'
-import Books from './Books';
 import BookList from './BookList';
-import Shelf from './Shelf';
-import {BrowserRouter ,Route ,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Search from "./Search";
-import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
 class BooksApp extends React.Component {
   state ={
@@ -26,7 +23,7 @@ class BooksApp extends React.Component {
       });
   }
 
-  // update books
+  // update books in home page
   updateBooks = (book, shelf) => {
       BooksAPI.update(book, shelf).then(() => {
         this.setState(state => ({
@@ -35,7 +32,8 @@ class BooksApp extends React.Component {
                   return (book.shelf = shelf);
                 }
                   else {
-               return book;
+                    console.log("heba");
+                     return book;
              }
           })
         }));
@@ -44,9 +42,9 @@ class BooksApp extends React.Component {
 
 
 //searchBooks
-searchBooks = query => {
+searchBooks = (query) => {
    this.setState({query, searchingpage: true}, () => {
-     
+
      BooksAPI.search(query, 20).then(results => {
        if (results.error) {
          this.setState({searchingpage: false, results: []})
@@ -70,7 +68,7 @@ this.setState({query: '', results: [], searching: false})
       <Route
            exact
            path="/"
-           render={() => (
+            render={() => (
              <BookList
              state={this.state}
              update={this.updateBooks}/>
@@ -83,6 +81,7 @@ this.setState({query: '', results: [], searching: false})
        books={this.state.books}
        searchBooks={this.searchBooks}
        clearSearch={this.clearSearch}
+       update={this.updateBooks}
        />
      )} />
     }

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
-import PropTypes from "prop-types";
-import * as BooksAPI from './BooksAPI';
-import Books from './Books';
 
-import Res from './Res'
-import BooksApp from './App'
+import PropTypes from "prop-types";
+
+
   class Search extends Component {
 
   onChange = event => {
+
+
     const query = event.target.value.trim()
     if (query === '') {
       this.props.clearSearch()
@@ -28,8 +26,10 @@ import BooksApp from './App'
  }*/
 
  /*updatQuery =(query) =>{
+
    const { books } = this.props
    this.setState({query :query.target.value.trim()})
+
   if (query){
    BooksAPI.search(query, 20).then((results) => {
      if (results.length > 0) {
@@ -39,6 +39,7 @@ import BooksApp from './App'
       return res;
       });
       this.setState({ results });
+
     }
        });
      }
@@ -47,9 +48,9 @@ import BooksApp from './App'
 
  render(){
 
-      const {  books } = this.props
-      const {searchingpage, query, results,update} = this.props.state
-      const noResults = !searchingpage && query && results.length < 1
+
+      const { query, results,update} = this.props.state
+
 
 
    return (
@@ -69,27 +70,38 @@ import BooksApp from './App'
       <div className="search-books-results">
       <ol className="books-grid">
        {results.map(book =>
-        <li key={book.id}
+         <li key={book.id} className='books-list-item'
          appState={this.props.appState}
          book={book}>
 
-        <div>
 
-          <p>{book.title}</p>
-          <p>{book.author}</p>
-          <p
+          <div className="book">
+          <div className="book-top">
+          <div
           className="book-cover"
           style={{
             width: 128,
             height: 193,
             backgroundImage: `url(${book.imageLinks.thumbnail})`
-          }}></p>
-    </div>
-    {results.length > 0 &&
-            <Books
-              books={results}
-               update={this.updateBooks}
-            />}
+          }}>
+          </div>
+          <div className="book-shelf-changer">
+          <select
+          value={book.shelf || "none"}
+          id={book.id}
+          onChange={event => update(book, event.target.value)}>
+            <option value="move" disabled>Move to...</option>
+            <option value="currentlyReading">Currently Reading</option>
+            <option value="wantToRead">Want to Read</option>
+            <option value="read">Read</option>
+            <option value="none">None</option>
+          </select>
+        </div>
+ </div>
+             <div className="book-title">{book.title}</div>
+             <div >{book.author}</div>
+             </div>
+
        </li>
        )}
     </ol>
