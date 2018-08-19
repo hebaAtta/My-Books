@@ -25,6 +25,7 @@ const { state ,update}=this.props;
                <h2 className="bookshelf-title">Currently Reading</h2>
                <div className="bookshelf-books">
                  <Books
+                  state={this.props.state}
                    books={current}
                    update={update}
                    />
@@ -38,6 +39,8 @@ const { state ,update}=this.props;
                  <h2 className="bookshelf-title">wantToRead</h2>
                  <div className="bookshelf-books">
                    <Books
+                  state={this.props.state}
+
                      books={Want}
                      update={update}
                      />
@@ -51,6 +54,8 @@ const { state ,update}=this.props;
                    <h2 className="bookshelf-title">Read</h2>
                    <div className="bookshelf-books">
                      <Books
+                  state={this.props.state}
+
                        books={Read}
                        update={update}
                        />

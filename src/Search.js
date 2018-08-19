@@ -9,12 +9,12 @@ import PropTypes from "prop-types";
   onChange = event => {
 
 
-    const query = event.target.value.trim()
+    const query = event.target.value.trim();
     if (query === '') {
-      this.props.clearSearch()
+      this.props.clearSearch();
       console.log("fffff");
     } else {
-    this.props.searchBooks(query)
+    this.props.searchBooks(query);
       console.log("55");
     }
   }
@@ -49,7 +49,8 @@ import PropTypes from "prop-types";
  render(){
 
 
-      const { query, results,update} = this.props.state
+      const { query, results} = this.props.state;
+      const {update} = this.props;
 
 
 
@@ -58,7 +59,6 @@ import PropTypes from "prop-types";
       <div className="search-books-bar">
         <Link className="close-search" to="/">Close</Link>
         <div className="search-books-input-wrapper">
-          {}
           <input type="text"
           placeholder="Search by title or author"
           value={query}
@@ -71,7 +71,6 @@ import PropTypes from "prop-types";
       <ol className="books-grid">
        {results.map(book =>
          <li key={book.id} className='books-list-item'
-         appState={this.props.appState}
          book={book}>
 
 
@@ -114,6 +113,6 @@ import PropTypes from "prop-types";
 }
 Search.propTypes = {
   books: PropTypes.array,
-  moveTo: PropTypes.func,
-}
+  update: PropTypes.func
+};
 export default Search;

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 class Books extends Component {
 
+
   render(){
     const { books ,update }=this.props;
     return(
@@ -51,7 +52,7 @@ class Books extends Component {
 
 Books.propTypes = {
 
-  state: PropTypes.array.isRequired,
+  state: PropTypes.object.isRequired,
   update: PropTypes.func
 };
 
